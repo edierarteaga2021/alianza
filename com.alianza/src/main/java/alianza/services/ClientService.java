@@ -29,7 +29,7 @@ public class ClientService {
 
 	public List<Client>  getClientBySharedKey(String sharedKey) {
 		logger.info("se lista clientes");
-		return 	repository.getClientBySharedKey(sharedKey);
+		return 	repository.getClientBySharedKeyContaining(sharedKey);
 		
 	}	
 

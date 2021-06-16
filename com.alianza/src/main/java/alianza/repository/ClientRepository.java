@@ -17,6 +17,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
 			+ "AND c.date_add >=  if(?4 IS NULL,'1500-01-01',?4) AND c.date_add <= if(?5 IS NULL,'9999-12-31',?5)", nativeQuery = true)
 	List<Client> getClientByAdvancedSearch(String sharedKey, String phone, String email, Date startDate, Date endDate);
 	
-	List<Client> getClientBySharedKey(String sharedKey);
+	List<Client> getClientBySharedKeyContaining(String sharedKey);
 
 }
