@@ -1,0 +1,15 @@
+.button {
+    background-color: hsl(0, 0%, 100%);
+    padding: 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;    
+    border: 1px solid rgb(184, 181, 181);    
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    }
+    
+    td{
+        overflow-wrap: break-word;
+    }
+    

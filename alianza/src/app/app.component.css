@@ -1,0 +1,15 @@
+.bgLogin {
+    background-image: url("../assets/layout_set_logo.png");
+    width: 128px;
+    height: 44px; 
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff !important;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-size: initial;
+    background-size: cover;
+}

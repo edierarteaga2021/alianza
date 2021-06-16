@@ -1,0 +1,129 @@
+<div class="ui-fluid ui-g-12 ui-md-12">
+    <div class="card card-w-title">
+        <!--Div para los datos superiores-->
+        <div>
+
+            <div class="p-grid">
+                <div class="p-col-2" style="margin: 0.5rem">
+                    <button pButton label="New" title="New" class="ui-button-rounded" (click)="verModal()"></button>
+                </div>
+                <div class="p-col-2" style="margin: 0.5rem">
+                    <button pButton label="Export" title="Export" class="ui-button-rounded"
+                    (click)="exportar()"
+                        ></button>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-4" style="padding-right: 0px !important">
+                    <div class="search-hero">
+                        <input pInputText class="form-control" size="20" type="text" name="search"
+                            [(ngModel)]="searchText" autocomplete="off" placeholder="Enter Shared Key">
+
+                    </div>
+                </div>
+                <div class="p-col-1" style="padding-left: 0px !important;">
+                    <button class="button" (click)="search()">Search</button>
+                </div>
+				<div class="p-col-2" >
+                    <button *ngIf="!mostrarAdvancedSearch" pButton label="Advanced Search" title="Advanced Search" class="ui-button-rounded" (click)="verAdvancedSearch()"></button>
+                </div>
+            </div>
+            <form *ngIf="mostrarAdvancedSearch" [formGroup]="form" (ngSubmit)="advancedSearch()">
+                <div class="p-field p-grid" >
+                    <label for="sharedKey" class="p-col-fixed" style="width:100px">Name</label>
+					<div class="p-col-4">
+                    <input pInputText type="text" formControlName="sharedKey" class="form-control" name="sharedKey"
+                        ngModel>
+					</div>
+                </div>
+                <div class="p-field p-grid" >
+                    <label for="phone" class="p-col-fixed" style="width:100px">Phone</label>
+					<div class="p-col-4">
+                    <input pInputText type="text" formControlName="phone" maxlength="10" class="form-control"
+                        name="phone" ngModel
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');">
+					</div>
+				</div>
+                <div class="p-field p-grid" >					
+                    <label for="email" class="p-col-fixed" style="width:100px">E-mail</label>
+					<div class="p-col-4">
+                    <input pInputText type="text" formControlName="email" class="form-control" name="email" ngModel>
+					</div>
+                </div>
+
+                <div class="p-field p-grid">					
+					<label for="startDate" class="p-col-fixed" style="width:100px">Start date</label>
+					<div class="p-col-4">
+                    <p-calendar [showIcon]="true" formControlName="startDate" class="form-control ui-calendar ui-widget"
+                        dateFormat="dd/mm/yy" [locale]="es"></p-calendar>
+					</div>
+                </div>
+
+                <div class="p-field p-grid">					
+					<label for="endDate" class="p-col-fixed" style="width:100px">End Date</label>
+					<div class="p-col-4">
+                    <p-calendar [showIcon]="true" formControlName="endDate" class="form-control ui-calendar ui-widget"
+                        dateFormat="dd/mm/yy" [locale]="es"></p-calendar>
+					</div>
+                </div>
+
+
+                <div class="card-footer" class="p-col-2">
+                    <button pButton label="Ok" title="Ok" class="ui-button-rounded" 
+                        type="submit"></button>
+
+
+                </div>
+            </form>
+
+            <p-dialog header="Create New Client" [(visible)]="respuestaModal" [responsive]="true"
+                showEffect="fade" [modal]="true" [style]="{width: '600px'}" [baseZIndex]="10000"
+                (onHide)="closeModal()">
+
+                <app-add-client (cambiarValor2)="exitoso = $event" (cambiarValor)="respuestaModal = $event">
+                </app-add-client>
+            </p-dialog>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="ui-fluid ui-g-12 ui-md-12">
+    <div class="card card-w-title">
+
+        <p-table [value]="clients">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Shared Key</th>
+                    <th>Business ID</th>
+                    <th>E-mail</th>
+                    <th>Phone</th>
+                    <th>Data Added</th>
+                    <th style="width: 55px;">
+                        <button pButton pRipple type="button" icon="pi pi-pencil"
+                            class="p-button-rounded p-button-text"></button>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-client>
+                <tr>
+                    <td>{{client.sharedKey}}</td>
+                    <td>{{client.businessId}}</td>
+                    <td>{{client.email}}</td>
+                    <td>{{client.phone}}</td>
+                    <td>{{client.dateAdd | date:'dd/MM/yyyy'}}</td>
+                    <td><button pButton pRipple type="button" icon="pi pi-pencil"
+                            class="p-button-rounded p-button-text"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+
+
+
+    </div>
+</div>

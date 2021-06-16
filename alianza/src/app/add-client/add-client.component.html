@@ -1,0 +1,52 @@
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="p-fluid">
+        
+        <div class="p-field">
+            <span style="color: red">* </span>
+            <label for="sharedKey">Shared Key</label>
+            <input id="sharedKey" type="text" formControlName="sharedKey" class="form-control" pInputText ngModel  required> 
+        </div>
+        <div class="p-field">
+            <span style="color: red">* </span>
+            <label for="businessId">Business ID</label>
+            <input id="businessId" type="text" formControlName="businessId" class="form-control" pInputText ngModel  required> 
+        </div>
+        <div class="p-field">
+            <span style="color: red">* </span>
+            <label for="email">E-mail</label>
+            <input id="email" type="text" formControlName="email" class="form-control" pInputText ngModel  required> 
+        </div>
+        <div class="p-field">
+            <label for="phone">Phone</label>
+            <input id="phone" type="text" formControlName="phone" class="form-control" pInputText ngModel maxlength="10"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" > 
+        </div>
+        <div class="p-field" disabled>
+            <label for="dateAdd">Data Added</label><p-calendar readonlyInput=true  [minDate]="minDateValue" [maxDate]="maxDateValue" [showIcon]="false" formControlName="dateAdd"  [(ngModel)]="deadline" 
+                            class="form-control ui-calendar ui-widget" dateFormat="dd/mm/yy" [locale]="es"></p-calendar>           
+        </div>
+        <div *ngIf="form.get('email').errors!&&form.get('email').dirty!">
+            <p *ngIf="form.get('email').hasError('email')"><strong>No tiene formato de correo valido</strong></p>
+        </div>
+        <div *ngIf="form.get('sharedKey').errors&&form.get('sharedKey').dirty">
+            <p *ngIf="form.get('sharedKey').hasError('required')">Campo <strong>Shared Key</strong> requerido</p>
+        </div>
+        <div *ngIf="form.get('businessId').errors&&form.get('businessId').dirty">
+            <p *ngIf="form.get('businessId').hasError('required')">Campo <strong>Business ID</strong> requerido</p>
+        </div>
+        <div *ngIf="form.get('email').errors&&form.get('email').dirty">
+            <p *ngIf="form.get('email').hasError('required')">Campo <strong>E-mail</strong> requerido</p>
+        </div>
+    </div>
+    <div class="p-grid p-justify-center">
+        
+        <div class="p-col-2" style="margin: 0.5rem">
+            
+                <button pButton label="Add"
+                title="Add" id="btnSubmit" class="ui-button-rounded"  type="submit" ></button>
+            
+        </div>
+
+    </div>
+</form>
